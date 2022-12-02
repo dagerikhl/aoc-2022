@@ -1,19 +1,32 @@
-import { p1 as d01p1, p2 as d01p2 } from "./days/01/main.ts";
-import { DayRunner } from "./types/DayRunner.ts";
+import { Debug } from "./types/Debug.ts";
 
-const DAY_MAP: Record<string, Record<string, DayRunner>> = {
-  "01": {
-    "1": d01p1,
-    "2": d01p2,
-  },
-};
+const day = Deno.args[0];
 
-if (!/^\d{2}$/.test(Deno.args[0])) {
+if (!/^\d{2}$/.test(day)) {
   throw new Error("Day must be given as an arg with two digits: `deno run src/main.ts 01 1`");
 }
 
-if (!/^\d$/.test(Deno.args[1])) {
+const part = Deno.args[1];
+
+if (!/^\d$/.test(part)) {
   throw new Error("Part must be given as an arg with one digit: `deno run src/main.ts 01 1`");
 }
 
-await DAY_MAP[Deno.args[0]][Deno.args[1]](Deno.args.includes("t"));
+const useDebugLogs = Deno.args.includes("d");
+const debug: Debug = useDebugLogs
+  ? (...args: any[]) => {
+    console.log(...args);
+  }
+  : () => {
+  };
+const useTestInput = Deno.args.includes("t");
+
+const input = (await Deno.readTextFile(`./src/days/${day}/input${useTestInput ? ".test" : ""}.txt`)).trim();
+const solution = await (await import(`./days/${day}/main.ts`))[`p${part}`](
+  input,
+  debug,
+);
+
+console.log("\n === SOLUTION === \n");
+console.log(solution);
+console.log("\n === SOLUTION === \n");

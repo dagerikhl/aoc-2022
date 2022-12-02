@@ -1,1 +1,3 @@
-export type DayRunner = (t?: boolean) => Promise<void>;
+import { Debug } from "./Debug.ts";
+
+export type DayRunner = (input: string, d: Debug) => Promise<any>;
