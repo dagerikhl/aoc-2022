@@ -10,19 +10,19 @@ const HAND_SCORE_MAP: Record<string, number> = {
   "X": 1,
   "Y": 2,
   "Z": 3,
-}
+};
 
 const HAND_MAP: Record<string, string> = {
   "X": "A",
   "Y": "B",
   "Z": "C",
-}
+};
 
 const WIN_MAP: Record<string, string> = {
   "X": "C",
   "Y": "A",
   "Z": "B",
-}
+};
 
 const calculateScoreByHand = (o: string, y: string): number => {
   const handScore = HAND_SCORE_MAP[y];
@@ -40,7 +40,7 @@ const calculateScoreByHand = (o: string, y: string): number => {
   }
 
   return score;
-}
+};
 
 export const p1: DayRunner = async (input, d) => {
   d("input:", input);
@@ -91,13 +91,13 @@ const HAND_RESULT_MAP: Record<string, Record<string, string>> = {
     "B": "Z",
     "C": "X",
   },
-}
+};
 
 const RESULT_MAP: Record<string, number> = {
   "X": 0,
   "Y": 3,
   "Z": 6,
-}
+};
 
 const calculateScoreByResult = (o: string, r: string): number => {
   const yourHand = HAND_RESULT_MAP[r][o];
@@ -107,7 +107,7 @@ const calculateScoreByResult = (o: string, r: string): number => {
   const result = RESULT_MAP[r];
 
   return handScore + result;
-}
+};
 
 export const p2: DayRunner = async (input, d) => {
   d("input:", input);

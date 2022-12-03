@@ -46,7 +46,7 @@ export const p2: DayRunner = async (input, d) => {
 
   const topThreeElves = sortedElves.slice(0, 3);
 
-  d("topThreeElves:", topThreeElves)
+  d("topThreeElves:", topThreeElves);
 
   const totalCalories = topThreeElves.reduce((r, c) => r + c.max, 0);
 
