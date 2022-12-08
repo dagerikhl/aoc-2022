@@ -50,9 +50,9 @@ class Dir {
   public getDirs(): Dir[] {
     return this.dirs;
   }
-  
+
   public addDir(name: string): Dir {
-    const existingDir = this.dirs.find((dir) => dir.name === name)
+    const existingDir = this.dirs.find((dir) => dir.name === name);
     if (existingDir) {
       return existingDir;
     }
@@ -72,7 +72,7 @@ class Dir {
 ${indent(this.level)}- ${this.name} (dir) (level=${this.level})${this.dirs.length > 0 ? "\n" : ""}\
 ${this.dirs.map((dir) => dir.toString()).join("\n")}${this.files.length > 0 ? "\n" : ""}\
 ${this.files.map((file) => file.toString()).join("\n")}\
-`
+`;
   }
 }
 
@@ -97,7 +97,7 @@ const findDirsOfMaxSize = (root: Dir, maxSize: number): Dir[] => {
 
   for (const dir of root.getDirs()) {
     if (dir.getSize() <= maxSize) {
-      dirs.push(dir)
+      dirs.push(dir);
     }
 
     dirs = [...dirs, ...findDirsOfMaxSize(dir, maxSize)];
@@ -112,7 +112,7 @@ export const p1: DayRunner = async (input, d) => {
   const parts = input.split("\r\n");
 
   d("parts:", parts);
-  
+
   const root = new Dir("/", [], []);
 
   let command: Command | undefined;
@@ -167,7 +167,7 @@ const findDeletionCandidates = (root: Dir, minSize: number): Dir[] => {
 
   for (const dir of root.getDirs()) {
     if (dir.getSize() > minSize) {
-      dirs.push(dir)
+      dirs.push(dir);
     }
 
     dirs = [...dirs, ...findDeletionCandidates(dir, minSize)];
@@ -226,7 +226,7 @@ export const p2: DayRunner = async (input, d) => {
 
   const requiredSpaceToDelete = MIN_SIZE - unusedSpace;
 
-  d("requiredSpaceToDelete:", requiredSpaceToDelete)
+  d("requiredSpaceToDelete:", requiredSpaceToDelete);
 
   const deletionCandidates = findDeletionCandidates(root, requiredSpaceToDelete);
 

@@ -104,7 +104,7 @@ export const p1: DayRunner = async (input, d) => {
 
   // Perform procedures
 
-  for (let i = 0; i < procedures.length; i++){
+  for (let i = 0; i < procedures.length; i++) {
     const instruction = procedures[i];
 
     const fromStack = stacks.find((s) => s.id === instruction.from)!;
@@ -164,7 +164,7 @@ export const p2: DayRunner = async (input, d) => {
 
   // Perform procedures
 
-  for (let i = 0; i < procedures.length; i++){
+  for (let i = 0; i < procedures.length; i++) {
     const instruction = procedures[i];
 
     const fromStack = stacks.find((s) => s.id === instruction.from)!;

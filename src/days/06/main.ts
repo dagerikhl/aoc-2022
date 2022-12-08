@@ -2,7 +2,7 @@ import { DayRunner } from "../../types/DayRunner.ts";
 
 const checkIsMarker = (input: string[], targetLength: number): boolean => {
   return input.length === targetLength && !input.some((x) => input.filter((y) => x === y).length > 1);
-}
+};
 
 export const p1: DayRunner = async (input, d) => {
   d("input:", input);
