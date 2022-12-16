@@ -1,4 +1,5 @@
 import { DayRunner } from "../../types/DayRunner.ts";
+import { d } from "../../utils/debug.ts";
 
 interface Round {
   opponentHand: string;
@@ -42,7 +43,7 @@ const calculateScoreByHand = (o: string, y: string): number => {
   return score;
 };
 
-export const p1: DayRunner = async (input, d) => {
+export const p1: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("\r\n").map((x) => x.split(" "));
@@ -109,7 +110,7 @@ const calculateScoreByResult = (o: string, r: string): number => {
   return handScore + result;
 };
 
-export const p2: DayRunner = async (input, d) => {
+export const p2: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("\r\n").map((x) => x.split(" "));

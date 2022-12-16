@@ -1,4 +1,5 @@
 import { DayRunner } from "../../types/DayRunner.ts";
+import { d, dn } from "../../utils/debug.ts";
 
 interface Coords {
   x: number;
@@ -98,37 +99,37 @@ const moveTailAfterHead = (head: Node, tail: Node): void => {
   } else if (head.pos.y === tail.pos.y && head.pos.x === tail.pos.x - 2) {
     tail.move(Dir.Left);
   } else if (head.pos.y > tail.pos.y && head.pos.x > tail.pos.x) {
-    // console.log("Tail moving in dir:", DiagonalDir.UpRight);
+    dn("Tail moving in dir", DiagonalDir.UpRight);
     tail.moveDiagonally(DiagonalDir.UpRight);
   } else if (head.pos.y < tail.pos.y && head.pos.x > tail.pos.x) {
-    // console.log("Tail moving in dir:", DiagonalDir.RightDown);
+    dn("Tail moving in dir", DiagonalDir.RightDown);
     tail.moveDiagonally(DiagonalDir.RightDown);
   } else if (head.pos.y < tail.pos.y && head.pos.x < tail.pos.x) {
-    // console.log("Tail moving in dir:", DiagonalDir.DownLeft);
+    dn("Tail moving in dir", DiagonalDir.DownLeft);
     tail.moveDiagonally(DiagonalDir.DownLeft);
   } else if (head.pos.y > tail.pos.y && head.pos.x < tail.pos.x) {
-    // console.log("Tail moving in dir:", DiagonalDir.LeftUp);
+    dn("Tail moving in dir", DiagonalDir.LeftUp);
     tail.moveDiagonally(DiagonalDir.LeftUp);
   }
 };
 
-export const p1: DayRunner = async (input, d) => {
-  d("input:", input);
+export const p1: DayRunner = async (input) => {
+  dn("input", input);
 
   const parts = input.split("\r\n").map((row) => row.split(" "));
 
-  d("parts:", parts);
+  dn("parts", parts);
 
   const commands = parts.map((part) => new Command(part[0], +part[1]));
 
-  d("commands:", commands);
+  dn("commands", commands);
 
   const start: Coords = { x: 0, y: 0 };
   const head = new Node(start);
   const tail = new Node(start);
 
   for (const command of commands) {
-    d("  Tail pos:", tail.pos);
+    dn("  Tail pos", tail.pos);
     d(`== ${command.dir} ${command.steps} ==`);
 
     for (let i = 0; i < command.steps; i++) {
@@ -139,26 +140,26 @@ export const p1: DayRunner = async (input, d) => {
     }
   }
 
-  d("head visits:", head.visited);
-  d("head unique visits:", head.getUniqueVisits());
+  dn("head visits", head.visited);
+  dn("head unique visits", head.getUniqueVisits());
 
-  d("tail visits:", tail.visited);
+  dn("tail visits", tail.visited);
 
   const uniqueTailVisits = tail.getUniqueVisits();
 
   return { uniqueTailVisits };
 };
 
-export const p2: DayRunner = async (input, d) => {
-  d("input:", input);
+export const p2: DayRunner = async (input) => {
+  dn("input", input);
 
   const parts = input.split("\r\n").map((row) => row.split(" "));
 
-  d("parts:", parts);
+  dn("parts", parts);
 
   const commands = parts.map((part) => new Command(part[0], +part[1]));
 
-  d("commands:", commands);
+  dn("commands", commands);
 
   const start: Coords = { x: 0, y: 0 };
   const knots: Node[] = [
@@ -177,7 +178,7 @@ export const p2: DayRunner = async (input, d) => {
   const tail = knots[knots.length - 1];
 
   for (const command of commands) {
-    d("  Tail pos:", tail.pos);
+    dn("  Tail pos", tail.pos);
     d(`== ${command.dir} ${command.steps} ==`);
 
     for (let i = 0; i < command.steps; i++) {
@@ -190,10 +191,10 @@ export const p2: DayRunner = async (input, d) => {
     }
   }
 
-  d("head visits:", head.visited);
-  d("head unique visits:", head.getUniqueVisits());
+  dn("head visits", head.visited);
+  dn("head unique visits", head.getUniqueVisits());
 
-  d("tail visits:", tail.visited);
+  dn("tail visits", tail.visited);
 
   const uniqueTailVisits = tail.getUniqueVisits();
 

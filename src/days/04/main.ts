@@ -1,4 +1,5 @@
 import { DayRunner } from "../../types/DayRunner.ts";
+import { d } from "../../utils/debug.ts";
 
 type Range = [number, number];
 
@@ -6,7 +7,7 @@ const checkContains = (a: Range, b: Range): boolean => {
   return a[0] >= b[0] && a[1] <= b[1];
 };
 
-export const p1: DayRunner = async (input, d) => {
+export const p1: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("\r\n").map((x) => x.split(",").map<Range>((y) => y.split("-").map((z) => +z) as Range));
@@ -38,7 +39,7 @@ const checkOverlap = (a: Range, b: Range): boolean => {
   return itemsA.some((x) => itemsB.includes(x));
 };
 
-export const p2: DayRunner = async (input, d) => {
+export const p2: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("\r\n").map((x) => x.split(",").map<Range>((y) => y.split("-").map((z) => +z) as Range));

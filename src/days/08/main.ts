@@ -1,4 +1,5 @@
 import { DayRunner } from "../../types/DayRunner.ts";
+import { d } from "../../utils/debug.ts";
 
 type Indices = [number, number];
 interface Coordinates {
@@ -216,7 +217,7 @@ class Map {
   }
 }
 
-export const p1: DayRunner = async (input, d) => {
+export const p1: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("\r\n").map((row) => row.split("").map((t) => +t));
@@ -244,7 +245,7 @@ export const p1: DayRunner = async (input, d) => {
   return { count };
 };
 
-export const p2: DayRunner = async (input, d) => {
+export const p2: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("\r\n").map((row) => row.split("").map((t) => +t));

@@ -1,4 +1,5 @@
 import { DayRunner } from "../../types/DayRunner.ts";
+import { d } from "../../utils/debug.ts";
 
 const indent = (level: number): string => "  ".repeat(level);
 
@@ -106,7 +107,7 @@ const findDirsOfMaxSize = (root: Dir, maxSize: number): Dir[] => {
   return dirs;
 };
 
-export const p1: DayRunner = async (input, d) => {
+export const p1: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("\r\n");
@@ -178,7 +179,7 @@ const findDeletionCandidates = (root: Dir, minSize: number): Dir[] => {
 
 const findSmallestDir = (dirs: Dir[]): Dir => dirs.sort((a, b) => a.getSize() - b.getSize())[0];
 
-export const p2: DayRunner = async (input, d) => {
+export const p2: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("\r\n");

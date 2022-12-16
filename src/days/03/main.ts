@@ -1,4 +1,5 @@
 import { DayRunner } from "../../types/DayRunner.ts";
+import { d } from "../../utils/debug.ts";
 
 const getPriorityOfLetter = (letter: string): number => {
   if (/^[a-z]$/.test(letter)) {
@@ -8,7 +9,7 @@ const getPriorityOfLetter = (letter: string): number => {
   }
 };
 
-export const p1: DayRunner = async (input, d) => {
+export const p1: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("\r\n").map((x) => {
@@ -32,7 +33,7 @@ export const p1: DayRunner = async (input, d) => {
   return { sum };
 };
 
-export const p2: DayRunner = async (input, d) => {
+export const p2: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("\r\n").reduce<string[][]>((r, c, i, o) => {

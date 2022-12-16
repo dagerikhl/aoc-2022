@@ -1,6 +1,7 @@
 import { DayRunner } from "../../types/DayRunner.ts";
+import { d } from "../../utils/debug.ts";
 
-export const p1: DayRunner = async (input, d) => {
+export const p1: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.trim().split("\r\n\r\n").map((x) => x.split("\r\n").map((y) => +y));
@@ -25,7 +26,7 @@ export const p1: DayRunner = async (input, d) => {
   return ({ elf, calories });
 };
 
-export const p2: DayRunner = async (input, d) => {
+export const p2: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.trim().split("\r\n\r\n").map((x) => x.split("\r\n").map((y) => +y));

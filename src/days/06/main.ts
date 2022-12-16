@@ -1,10 +1,11 @@
 import { DayRunner } from "../../types/DayRunner.ts";
+import { d } from "../../utils/debug.ts";
 
 const checkIsMarker = (input: string[], targetLength: number): boolean => {
   return input.length === targetLength && !input.some((x) => input.filter((y) => x === y).length > 1);
 };
 
-export const p1: DayRunner = async (input, d) => {
+export const p1: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("");
@@ -33,7 +34,7 @@ export const p1: DayRunner = async (input, d) => {
   return { firstMarkerIndex };
 };
 
-export const p2: DayRunner = async (input, d) => {
+export const p2: DayRunner = async (input) => {
   d("input:", input);
 
   const parts = input.split("");

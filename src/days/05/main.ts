@@ -1,4 +1,5 @@
 import { DayRunner } from "../../types/DayRunner.ts";
+import { d } from "../../utils/debug.ts";
 
 class Stack {
   public id: string;
@@ -62,7 +63,7 @@ class Instruction {
   }
 }
 
-export const p1: DayRunner = async (input, d) => {
+export const p1: DayRunner = async (input) => {
   d("input:", input);
 
   const [stacksRaw, proceduresRaw] = input.split("\r\n\r\n");
@@ -122,7 +123,7 @@ export const p1: DayRunner = async (input, d) => {
   return { topItems };
 };
 
-export const p2: DayRunner = async (input, d) => {
+export const p2: DayRunner = async (input) => {
   d("input:", input);
 
   const [stacksRaw, proceduresRaw] = input.split("\r\n\r\n");

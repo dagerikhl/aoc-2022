@@ -1,4 +1,5 @@
-import { Debug } from "./types/Debug.ts";
+import { DayRunner } from "./types/DayRunner.ts";
+import { debugConfig } from "./utils/debug.ts";
 
 const day = Deno.args[0];
 
@@ -13,22 +14,14 @@ if (!/^\d$/.test(part)) {
 }
 
 const useDebugLogs = Deno.args.includes("d");
-const debug: Debug = useDebugLogs
-  ? (...args: any[]) => {
-    console.log(...args);
-  }
-  : () => {
-  };
+debugConfig.useDebug = useDebugLogs;
 const testInputArg = Deno.args.find((arg) => /^t\d?$/.test(arg));
 const testInputNumber = testInputArg ? (testInputArg === "t" ? "" : testInputArg.substring(1)) : undefined;
 
 const inputRaw =
   (await Deno.readTextFile(`./src/days/${day}/input${testInputArg ? `.test${testInputNumber}` : ""}.txt`));
 const input = inputRaw.substring(0, inputRaw.length - 1 - 1);
-const solution = await (await import(`./days/${day}/main.ts`))[`p${part}`](
-  input,
-  debug,
-);
+const solution = await ((await import(`./days/${day}/main.ts`))[`p${part}`] as DayRunner)(input);
 
 console.log("\n === SOLUTION === \n");
 console.log(solution);
