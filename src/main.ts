@@ -19,9 +19,11 @@ const debug: Debug = useDebugLogs
   }
   : () => {
   };
-const useTestInput = Deno.args.includes("t");
+const testInputArg = Deno.args.find((arg) => /^t\d?$/.test(arg));
+const testInputNumber = testInputArg ? (testInputArg === "t" ? "" : testInputArg.substring(1)) : undefined;
 
-const inputRaw = (await Deno.readTextFile(`./src/days/${day}/input${useTestInput ? ".test" : ""}.txt`));
+const inputRaw =
+  (await Deno.readTextFile(`./src/days/${day}/input${testInputArg ? `.test${testInputNumber}` : ""}.txt`));
 const input = inputRaw.substring(0, inputRaw.length - 1 - 1);
 const solution = await (await import(`./days/${day}/main.ts`))[`p${part}`](
   input,
